@@ -10,12 +10,8 @@ You need a fairly modern browser supporting `TextMetrics.actualBoundingBoxAscent
 to use slidemaker. This feature was first supported in Chrome 77, Firefox 74, Edge 79,
 and Safari 11.1.
 
-__NOTE TO FIREFOX:__ Although support is included, it is _not enabled by default_.
-Open `about:config` and change the `dom.textMetrics.fontBoundingBox.enabled` to `true`.
-Otherwise, slidemaker will not work.
-
 ## known issues
-* multiple lines of text may move upwards if rendered a second time
+* many lines of text may be too close to each other and collide
 * width and height settings not yet implemented
 
 ## licence
