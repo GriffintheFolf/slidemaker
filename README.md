@@ -10,6 +10,10 @@ Any semi-modern browser should work just fine. More specifically, it needs to
 support canvases and the `<input type="color">` tag, which has been supported
 since Chrome 20, Firefox 29, and Safari 10.1.
 
+## known issues
+* multiple lines of text does not work (yet)
+* width and height settings not yet implemented
+
 ## licence
 
 slidemaker is licenced under the MIT Licence.
