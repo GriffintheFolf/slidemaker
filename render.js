@@ -6,6 +6,9 @@
 // video FPS, DO NOT CHANGE!
 const FRAMES_PER_SECOND = 5;
 
+// video codec
+const VIDEO_CODEC = "video/webm; codecs=\"vp8\"";
+
 // ctx.textBaseline must be set to "bottom" for this to work
 function text_height(ctx, text) {
     let metrics = ctx.measureText(text);
@@ -63,6 +66,18 @@ function encode_video() {
     }
 
     let output = encoder.compile(false, function(output) {
-        document.getElementById("result").src = URL.createObjectURL(output);
+        let mediasource = new MediaSource();
+        let url = URL.createObjectURL(mediasource);
+        document.getElementById("result").src = url;
+
+        let buffer = null;
+        mediasource.addEventListener("sourceopen", function() {
+            buffer = mediasource.addSourceBuffer(VIDEO_CODEC);
+            mediasource.addEventListener("updateend", function() {
+                buffer.appendBuffer(output);
+            });
+        });
+
+        //document.getElementById("result").src = url;
     });
 }
