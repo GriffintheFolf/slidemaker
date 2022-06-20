@@ -14,9 +14,12 @@ and Safari 11.1.
 * many lines of text may be too close to each other and collide
 * width and height settings not yet implemented
 
-## licence
+## licence and credits
 
 slidemaker is licenced under the MIT Licence.
 
 It uses the [ts-whammy](https://github.com/Akimyou/ts-whammy) library, also
 under the MIT Licence.
+
+Thank you to @dangeredwolf for helping me compile ts-whammy and in general
+deal with node.
