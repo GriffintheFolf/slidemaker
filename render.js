@@ -6,9 +6,6 @@
 // video FPS, DO NOT CHANGE!
 const FRAMES_PER_SECOND = 5;
 
-// video codec
-const VIDEO_CODEC = "video/webm; codecs=\"vp8\"";
-
 // ctx.textBaseline must be set to "bottom" for this to work
 function text_height(ctx, text) {
     let metrics = ctx.measureText(text);
@@ -57,27 +54,14 @@ function draw_text() {
 }
 
 function encode_video() {
-    let ctx = document.getElementById("preview").getContext("2d");
+    let canvas = document.getElementById("preview");
     let slide_length = document.getElementById("slidelength").value;
-    let encoder = new Whammy.Video(FRAMES_PER_SECOND);
+    let frames = [];
 
     for(let i = 0; i < (slide_length * FRAMES_PER_SECOND + 1); i++) {
-        encoder.add(ctx);
+        frames.push(canvas.toDataURL("image/webp"));
     }
 
-    let output = encoder.compile(false, function(output) {
-        let mediasource = new MediaSource();
-        let url = URL.createObjectURL(mediasource);
-        document.getElementById("result").src = url;
-
-        let buffer = null;
-        mediasource.addEventListener("sourceopen", function() {
-            buffer = mediasource.addSourceBuffer(VIDEO_CODEC);
-            mediasource.addEventListener("updateend", function() {
-                buffer.appendBuffer(output);
-            });
-        });
-
-        //document.getElementById("result").src = url;
-    });
+    let output = index.fromImageArray(frames, FRAMES_PER_SECOND, false);
+    document.getElementById("result").src = URL.createObjectURL(output);
 }

@@ -18,5 +18,5 @@ and Safari 11.1.
 
 slidemaker is licenced under the MIT Licence.
 
-It uses the [whammy](https://github.com/antimatter15/whammy) library, also
+It uses the [ts-whammy](https://github.com/Akimyou/ts-whammy) library, also
 under the MIT Licence.
