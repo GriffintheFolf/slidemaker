@@ -13,7 +13,16 @@ function text_height(ctx, text) {
 }
 
 function draw_text() {
+    let width = parseInt(document.getElementById("slidewidth").value);
+    let height = parseInt(document.getElementById("slideheight").value);
+
+    if (!width || width < 1 || !height || height < 1) return;
+
     let canvas = document.getElementById("preview");
+
+    canvas.setAttribute("width", width);
+    canvas.setAttribute("height", height);
+
     let ctx = canvas.getContext("2d");
     ctx.save();
 
