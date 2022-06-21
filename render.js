@@ -51,9 +51,8 @@ function draw_text() {
 
     ctx.fillStyle = bgcolour;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.textBaseline = "bottom";
 
-    console.log("Offset: " + offset);
+    ctx.textBaseline = "bottom";
     const lines = text.split("\n");
 
     // calculate initial y offset for text
@@ -61,6 +60,7 @@ function draw_text() {
         console.log("Line " + i + " height: " + text_height(ctx, lines[i]));
         offset = offset + text_height(ctx, lines[i]);
     }
+    offset = offset + (text_height(ctx, lines[0]) / 2);
     console.log("Initial offset: " + offset);
 
     ctx.font = "30px sans-serif";
