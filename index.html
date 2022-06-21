@@ -15,29 +15,23 @@
             body {
                 background-color: #dcdcdc;
                 font-family: sans-serif;
-            }
 
-            .left, .right {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                width: 50%;
-                overflow: scroll;
+                margin: 0;
+                display: grid;
+                grid-template-columns: repeat(2, 50vw);
             }
 
             .left {
-                left: 0;
-                border-right: 1px solid black;
+                border-right: 2px solid black;
+                min-height: 100vh;
+            }
+            .left, .right {
+                padding: 0 1em;
             }
 
-            .right {
-                right: 0;
-                border-left: 1px solid black;
-            }
-
-            #result {
-                max-height: 75%;
-                max-width: 75%;
+            #result, #preview {
+                max-width: 100%;
+                border: 1px solid black;
             }
         </style>
     </head>
@@ -56,25 +50,47 @@
 
             <h2>Options</h2>
 
-            <label for="slidewidth">Width:</label>
-            <input type="number" id="slidewidth" value="1024">
-            <label for="slideheight">Height:</label>
-            <input type="number" id="slideheight" value="768"><br><br>
+            <p>
+                <label for="slidewidth">Width:</label>
+                <input type="number" id="slidewidth" value="1024">
+                <label for="slideheight">Height:</label>
+                <input type="number" id="slideheight" value="768">
+            </p>
 
-            <label for="slidelength">Length of each slide in seconds:</label>
-            <input type="number" id="slidelength" value="3.0"><br><br>
+            <p>
+                <label for="slidelength">Length of each slide in seconds:</label>
+                <input type="number" id="slidelength" value="3.0">
+            </p>
 
-            <label for="textcolour">Text colour:</label>
-            <input type="color" id="textcolour" value="#ffffff"><br><br>
+            <p>
+                <label for="textcolour">Text colour:</label>
+                <input type="color" id="textcolour" value="#ffffff">
+            </p>
 
-            <label for="bgcolour">Background colour:</label>
-            <input type="color" id="bgcolour" value="#000000"><br><br>
+            <p>
+                <label for="bgcolour">Background colour:</label>
+                <input type="color" id="bgcolour" value="#000000">
+            </p>
 
-            <button onclick="draw_text()">Generate!</button><br><br>
+            <p>
+                <button onclick="draw_text()">Generate!</button>
+                <button onclick="toggle_canvas()">Toggle preview canvas</button>
+            </p>
 
-            <canvas id="preview" width="1024" height="768">
+            <canvas id="preview" width="1024" height="768" style="display: none;">
                 Your browser does not support the canvas element.
             </canvas>
+
+            <script>
+                function toggle_canvas() {
+                    const previewcanvas = document.getElementById("preview");
+                    if (previewcanvas.style.display === "none") {
+                        previewcanvas.style.display = "block";
+                    } else {
+                        previewcanvas.style.display = "none";
+                    }
+                }
+            </script>
         </div>
 
         <div class="right">
