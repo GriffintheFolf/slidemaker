@@ -12,7 +12,7 @@ and Safari 11.1.
 
 ## known issues
 * many lines of text may be too close to each other and collide
-* width and height settings not yet implemented
+* multiple slides not yet implemented
 
 ## licence and credits
 
