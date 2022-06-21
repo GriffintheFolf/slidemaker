@@ -9,6 +9,23 @@ const FRAMES_PER_SECOND = 5;
 // ctx.textBaseline must be set to "bottom" for this to work
 function text_height(ctx, text) {
     const metrics = ctx.measureText(text);
+
+    /*
+        TextMetrics.fontBoundingBoxAscent is more accurate for positioning text
+        but is not enabled by default in Firefox, despite having been present
+        since Firefox 74.
+
+        Use fontBoundingBoxAscent if the browser supports it, otherwise fall
+        back to actualBoundingBoxAscent.
+
+        https://developer.mozilla.org/en-US/docs/Web/API/TextMetrics/fontBoundingBoxAscent
+    */
+    if("fontBoundingBoxAscent" in metrics) {
+        console.log("Using TextMetrics.fontBoundingBoxAscent");
+        return metrics.fontBoundingBoxAscent;
+    }
+
+    console.log("Warning: TextMetrics.fontBoundingBoxAscent unsupported!");
     return metrics.actualBoundingBoxAscent;
 }
 
@@ -36,7 +53,6 @@ function draw_text() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.textBaseline = "bottom";
 
-    //var offset = 0.0;
     console.log("Offset: " + offset);
     const lines = text.split("\n");
 
@@ -52,7 +68,6 @@ function draw_text() {
     ctx.textAlign = "center";
 
     for(let i = 0; i < lines.length; i++) {
-        //offset = offset - text_height(ctx, lines[i]);
         ctx.fillText(lines[i], canvas.width/2, (canvas.height/2 - offset), canvas.width);
         offset = offset - text_height(ctx, lines[i]);
         console.log("Offset: " + offset);
