@@ -67,8 +67,10 @@ function encode_video() {
     let slide_length = document.getElementById("slidelength").value;
     let frames = [];
 
+    let image = canvas.toDataURL("image/webp");
+
     for(let i = 0; i < (slide_length * FRAMES_PER_SECOND + 1); i++) {
-        frames.push(canvas.toDataURL("image/webp"));
+        frames.push(image);
     }
 
     let output = index.fromImageArray(frames, FRAMES_PER_SECOND, false);
