@@ -15,24 +15,17 @@
             body {
                 background-color: #dcdcdc;
                 font-family: sans-serif;
-            }
 
-            .left, .right {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                width: 50%;
-                overflow: scroll;
-            }
-
-            .left {
-                left: 0;
-                border-right: 1px solid black;
+                margin: 0;
+                display: grid;
+                grid-template-columns: repeat(2, 50vw);
             }
 
             .right {
-                right: 0;
-                border-left: 1px solid black;
+                border-right: 2px solid black;
+            }
+            .left, .right {
+                padding: 0 1em 1em 1em;
             }
 
             #result {
