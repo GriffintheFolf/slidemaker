@@ -30,6 +30,7 @@
 
             #result, #preview {
                 max-width: 100%;
+                border: 1px solid black;
             }
         </style>
     </head>
@@ -62,11 +63,23 @@
             <label for="bgcolour">Background colour:</label>
             <input type="color" id="bgcolour" value="#000000"><br><br>
 
-            <button onclick="draw_text()">Generate!</button><br><br>
+            <button onclick="draw_text()">Generate!</button>
+            <button onclick="toggle_canvas()">Toggle preview canvas</button><br><br>
 
-            <canvas id="preview" width="1024" height="768">
+            <canvas id="preview" width="1024" height="768" style="display: none;">
                 Your browser does not support the canvas element.
             </canvas>
+
+            <script>
+                function toggle_canvas() {
+                    const previewcanvas = document.getElementById("preview");
+                    if (previewcanvas.style.display === "none") {
+                        previewcanvas.style.display = "block";
+                    } else {
+                        previewcanvas.style.display = "none";
+                    }
+                }
+            </script>
         </div>
 
         <div class="right">
