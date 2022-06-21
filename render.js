@@ -80,6 +80,8 @@ function draw_text() {
 function encode_video() {
     const canvas = document.getElementById("preview");
     const slide_length = document.getElementById("slidelength").value;
+    const video_player = document.getElementById("result");
+    const download = document.getElementById("download");
     const frames = [];
 
     const image = canvas.toDataURL("image/webp");
@@ -89,5 +91,8 @@ function encode_video() {
     }
 
     const output = index.fromImageArray(frames, FRAMES_PER_SECOND, false);
-    document.getElementById("result").src = URL.createObjectURL(output);
+    const url = URL.createObjectURL(output);
+    video_player.src = url;
+    download.style.display = "inline";
+    download.href = url;
 }
