@@ -29,7 +29,8 @@ function text_height(ctx, text) {
     return metrics.actualBoundingBoxAscent;
 }
 
-function draw_text() {
+// if encode = false, do not encode the video
+function draw_text(encode) {
     const width = parseInt(document.getElementById("slidewidth").value);
     const height = parseInt(document.getElementById("slideheight").value);
 
@@ -73,7 +74,9 @@ function draw_text() {
         console.log("Offset: " + offset);
     }
 
-    encode_video();
+    if(encode) {
+        encode_video();
+    }
     ctx.restore();
 }
 

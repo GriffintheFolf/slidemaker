@@ -81,7 +81,7 @@
             </p>
 
             <p>
-                <button onclick="draw_text()">Generate!</button>
+                <button onclick="draw_text(true)">Generate!</button>
                 <button onclick="toggle_canvas()">Toggle preview canvas</button>
             </p>
 
@@ -93,6 +93,7 @@
                 function toggle_canvas() {
                     const previewcanvas = document.getElementById("preview");
                     if (previewcanvas.style.display === "none") {
+                        draw_text(false);
                         previewcanvas.style.display = "block";
                     } else {
                         previewcanvas.style.display = "none";
